@@ -1,4 +1,4 @@
-# COS 802 – Cross-Lingual Embeddings for South African Languages (IsiZulu, Setswana, and Sepedi)
+# COS 802 – Cross-Lingual Embeddings for South African Languages (IsiZulu, Sepedi, and Setswana)
 
 This repository contains the code for a COS 802 project that investigates
 cross-lingual word embeddings for South African languages, focusing on
