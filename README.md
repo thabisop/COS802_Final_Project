@@ -2,7 +2,8 @@
 
 This repository contains the code for a COS 802 project that investigates
 cross-lingual word embeddings for South African languages, focusing on
-IsiZulu (ZU), Setswana (TN), and Sepedi (NSO). The project compares:
+IsiZulu (ZU), Setswana (TN), and Sepedi (NSO). English (EN) and Afrikaans (AF) are used as pivot languages.
+The project compares:
 
 - **Pivot-based vs direct alignment**, and  
 - **Unsupervised VecMap vs supervised Canonical Correlation Analysis (CCA)**
