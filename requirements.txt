@@ -1,0 +1,10 @@
+fasttext
+numpy
+pandas
+scikit-learn
+torch
+torchtext
+datasets
+tqdm
+matplotlib
+requests
