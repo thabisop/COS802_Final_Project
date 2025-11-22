@@ -16,7 +16,7 @@ with MasakhaNER 2.0 (loaded via Hugging Face).
 
 All steps are implemented in a single end-to-end notebook:
 
-- `COS802_Crosslingual_Embeddings_Autshumato_HF_Pivots.ipynb`
+- `COS802_Crosslingual_Embeddings_Autshumato_HF_Pivots_u25738497.ipynb`
 
 When the data and folders are set up as described below, the notebook
 can be run from start to finish without modifying any code.
