@@ -197,7 +197,6 @@ training all benefit greatly from CUDA acceleration. The notebook has been
 tested on:
 
 - A100 High RAM/L4 GPU (recommended)
-- A100 Standard
 - T4 GPU
 
 Running the full pipeline on CPU is technically possible, but not advised, as
