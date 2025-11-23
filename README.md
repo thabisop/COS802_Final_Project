@@ -170,7 +170,8 @@ An internet connection is therefore required for the NER section of the notebook
 ## 5. Requirements (Only for local execution through anaconda, not recommended, only if you must)
 
 This project is implemented in Python and is designed to run in a GPU-enabled
-environment such as Google Colab. Dependencies are listed in `requirements.txt`.
+environment such as Google Colab. 
+However, these dependencies listed in `requirements.txt` are required in the case of local execution
 They include:
 
 - Python ≥ 3.9  
