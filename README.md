@@ -1,6 +1,6 @@
 # COS 802 – Cross-Lingual Embeddings for South African Languages (IsiZulu, Sepedi, and Setswana)
 
-This repository contains the code for a COS 802 project that investigates
+This repository contains the code for the COS 802 final project that investigates
 cross-lingual word embeddings for South African languages, focusing on
 IsiZulu (ZU), Setswana (TN), and Sepedi (NSO). English (EN) and Afrikaans (AF) are used as pivot languages.
 The project compares:
@@ -9,12 +9,12 @@ The project compares:
 - **Unsupervised VecMap vs supervised Canonical Correlation Analysis (CCA)**
 
 Monolingual FastText embeddings are trained on Autshumato corpora
-(EN, AF, TN, NSO) and a Hugging Face Nguni-style corpus for IsiZulu.
+(EN, AF, TN, NSO) and a Hugging Face Nguni corpus for IsiZulu.
 Alignment quality is evaluated intrinsically using bilingual lexicon
 induction and extrinsically using Named Entity Recognition (NER)
 with MasakhaNER 2.0 (loaded via Hugging Face).
 
-All steps are implemented in a single end-to-end notebook:
+All steps are implemented in a single end-to-end notebook to be ran using Google Colab:
 
 - `COS802_Crosslingual_Embeddings_Autshumato_HF_Pivots_u25738497.ipynb`
 
@@ -27,9 +27,9 @@ can be run from start to finish without modifying any code.
 
 ```text
 .
-├── README.md
-├── requirements.txt
-└── COS802_Crosslingual_Embeddings_Autshumato_HF_Pivots_u25738497.ipynb
+├── README.md - (This document) - document containg project description and instructions on how to run the code
+├── requirements.txt - short document containing the python package requirements - **Only for local execution through Anaconda (Jupyter notebook)**
+└── COS802_Crosslingual_Embeddings_Autshumato_HF_Pivots_u25738497.ipynb - Google Colab notebook with project code
 ```
 
 All other files (corpora, lexicons, trained models, aligned embeddings)
@@ -39,7 +39,7 @@ are stored in **Google Drive**, not in the repo.
 
 ## 2. Google Drive folder structure
 
-Create a top-level folder in your Google Drive called:
+Create a high-level folder in your Google Drive called:
 
 ```text
 crosslingual_project/
@@ -49,15 +49,13 @@ Inside it, create the following subfolders:
 
 ```text
 crosslingual_project/
-├── corpora/          # holds the four Autshumato ZIP files
+├── corpora/          #starts empyty; holds the four Autshumato ZIP files
 │
-├── lexicons/
-│   ├── sa_multilingual_lexicons_raw.json  # downloaded automatically if missing
-│   └── sa_multilingual_lexicons.csv       # optional, not used directly
+├── lexicons/ #starts empty;  downloaded automatically by the notebook
 │
 └── ft_models/
-    ├── ft_bin/     # starts empty; FastText .bin/.vec written here (this folder also gets created in the notebook if it doesn't exist)
-    └── aligned/    # starts empty; aligned VecMap/CCA embeddings written here (this folder also gets created in the notebook if it doesn't exist)
+    ├── ft_bin/     # starts empty; FastText .bin/.vec written here (this folder also gets created in the notebook if it doesn't already exist)
+    └── aligned/    # starts empty; aligned VecMap/CCA embeddings written here (this folder also gets created in the notebook if it doesn't already exist)
 ```
 
 > **Note:** For the Autshumato data, you place only the ZIP files directly into
@@ -70,8 +68,8 @@ crosslingual_project/
 > (see Section 3.2).
 
 Similarly, `ft_bin/` and `aligned/` start empty. The notebook trains or loads
-models and then writes files into these folders. The `lexicons/` folder may
-start empty; the JSON lexicon is downloaded into this folder on first run.
+models and then writes files into these folders. The `lexicons/` folder also
+starts empty; the JSON lexicon is downloaded into this folder on first run.
 
 ---
 
@@ -80,7 +78,13 @@ start empty; the JSON lexicon is downloaded into this folder on first run.
 ### 3.1 Autshumato monolingual corpora (EN, AF, TN, NSO)
 
 Download the four monolingual corpora from the Autshumato project
-(Department of Arts & Culture SA) (https://repo.sadilar.org/collections/61ce70ba-0406-439a-948e-c71ef542a778)
+(Department of Arts & Culture SA)
+The data can downloaded from here: 
+English - https://repo.sadilar.org/items/81017dab-074d-4e34-9adf-0222dd58c883 (Autshumato.MonolingualCorpus(English).en.zip)
+Setswana - https://repo.sadilar.org/items/3cbb5b92-3bd0-40e6-8d3a-21d9fd6a4ea3 (Autshumato.MonolingualCorpus(Setswana).v2.1.zip)
+Sepedi - https://repo.sadilar.org/items/ca4f2af4-934d-4950-9be6-54ef61d30610 (Autshumato.MonolingualCorpus(Sepedi).v2.1.zip)
+Afrikaans -https://repo.sadilar.org/items/f199a579-c74c-405d-b087-5b5bf70b5a99 (Autshumato.MonolingualCorpus(Afrikaans).v2.1.zip)
+
 and place the **ZIP files** directly under:
 
 ```text
@@ -102,10 +106,9 @@ sentences per language** for training FastText.
 
 ---
 
-### 3.2 IsiZulu corpus (Hugging Face Nguni-style corpus)
+### 3.2 IsiZulu corpus (Hugging Face Nguni corpus)
 
-The author couldn't find IsiZulu on Autshumato initially, so the IsiZulu text is sourced directly
-from a Hugging Face dataset inside the notebook:
+The author couldn't find IsiZulu on Autshumato initially, so the IsiZulu text is sourced directly from a Hugging Face dataset inside the notebook:
 
 ```python
 from datasets import load_dataset
@@ -139,15 +142,13 @@ The notebook expects a JSON file at:
 LEXICON_JSON_PATH = os.path.join(LEXICON_DIR, "sa_multilingual_lexicons_raw.json")
 ```
 
-If `sa_multilingual_lexicons_raw.json` does **not** exist, the notebook:
+`sa_multilingual_lexicons_raw.json` is downloaded automatically inside the notebook via the following steps:
 
-1. Downloads it from the UP Research Data Repository  
-2. Saves it into `crosslingual_project/lexicons/`
+1. It gets downloaded from the UP Research Data Repository  
+2. It gets saved it into `crosslingual_project/lexicons/`
 
-You can also download this JSON manually and place it there before running.
-The CSV version (`sa_multilingual_lexicons.csv`) is optional and not used
-directly.
-
+Optional - you can also download this JSON manually and place it there before running.
+Link - https://researchdata.up.ac.za/articles/dataset/South_African_multilingual_lexicons/27002596?file=49145419
 ---
 
 ## 4. MasakhaNER 2.0 (NER data)
@@ -166,7 +167,7 @@ An internet connection is therefore required for the NER section of the notebook
 
 ---
 
-## 5. Requirements
+## 5. Requirements (Only for local execution through anaconda, not recommended, only if you must)
 
 This project is implemented in Python and is designed to run in a GPU-enabled
 environment such as Google Colab. Dependencies are listed in `requirements.txt`.
@@ -265,13 +266,13 @@ the notebook simply loads them.
 ## 7. Running the project end-to-end
 
 1. Open `COS802_Crosslingual_Embeddings_Autshumato_HF_Pivots_u25738497.ipynb` in Google Colab.  
-2. In the first cells:
-   - Mount Google Drive.  
-   - Set the base path to your `crosslingual_project/` folder
+2. In the first cells, the notebook:
+   - Mounts Google Drive.  
+   - Sets the base path to your `crosslingual_project/` folder
      (by default, `/content/drive/MyDrive/crosslingual_project/`).  
 3. Ensure that:
    - The four Autshumato ZIP files are in `crosslingual_project/corpora/`.  
-   - `ft_models/ft_bin/` and `ft_models/aligned/` exist (they may be empty on first run).  
+   - `ft_models/ft_bin/` and `ft_models/aligned/` exist (they will be empty on first run).  
    - `lexicons/` exists (JSON will be downloaded automatically if missing).  
 4. Go to **Runtime → Run all**.
 
